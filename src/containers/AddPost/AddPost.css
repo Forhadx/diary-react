@@ -1,0 +1,32 @@
+.add-post{
+    width: 100%;
+}
+
+.add-post form{
+    width: 100%;
+}
+
+textarea{
+    width: 100%;
+    height: 20rem;
+    resize: none;
+    padding: 1rem ;
+    font-size: 1.2rem;
+    border: none;
+
+    border-left: .3rem solid pink;
+    border-right: .3rem solid pink;
+    margin-bottom: 2rem;
+}
+
+textarea:focus{
+    outline: none;
+}
+
+.addpost-btn{
+    width: 5rem;
+    height: 2rem;
+    background-color: rgb(240, 132, 150);
+    border: none;
+    color: white;
+}

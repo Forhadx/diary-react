@@ -1,0 +1,64 @@
+
+.update-post{
+    box-sizing: border-box;
+    background-color: rgb(255, 125, 147);
+    
+}
+.update-post .closeBtn{
+    padding: 0;
+    margin: 0;
+    margin-right: 1rem;
+    position: relative;
+    left: 90%;
+    top: .5rem;
+    border: 1px solid green;
+    border-radius: 50%;
+    width: 1.3rem;
+    height: 1.3rem;  
+    background-color: white;
+    color: black;  
+}
+.update-post form{
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.update-post label{
+    text-align: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: .3rem 0;
+}
+
+.update-post textarea{
+    width: 100%;
+    height: 20rem;
+    padding: 1rem;
+    resize: none;
+    font-size: 1.2rem;
+    border: none;
+    box-sizing: border-box;
+    border-radius: .3rem;
+    margin-bottom: .5rem;
+}
+.update-post textarea:focus{
+    outline: none;
+}
+
+.update-post button{
+    background-color:green;
+    color: white;
+    padding: .3rem 0;
+    font-weight: bold;
+    box-sizing: border-box;
+    border-radius: .3rem;
+}
+.update-post button:focus{
+    outline: none;
+}
+.update-post button:hover{
+    color: green;
+    background-color: white;
+}

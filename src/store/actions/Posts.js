@@ -1,7 +1,11 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
 
-
+export const addPostInit = () =>{
+    return{
+        type: actionTypes.ADD_POST_INIT
+    }
+}
 export const addPostStart = () =>{
     return{
         type: actionTypes.ADD_POST_START
@@ -28,10 +32,11 @@ export const addPost = (postData) => {
         dispatch( addPostStart() );
         axios.post('/diaryPosts.json', postData)
             .then(response =>{
-                //console.log('x',postData);
+               // console.log('add success!!')
                 dispatch( addPostSuccess(response.data.name, postData) );
             })
             .catch(err =>{
+                console.log('add error! ', err);
                 dispatch( addPostFailed(err) );
             })
     }
@@ -72,7 +77,7 @@ export const fetchPost = () =>{
                         id: key
                     })
                 }
-                console.log('x',fetchPosts);
+               // console.log('post action: ',fetchPosts);
                 dispatch( fetchPostSuccess(fetchPosts) );
             })
             .catch(err =>{
@@ -117,6 +122,11 @@ export const deletePost = (pId) =>{
     }
 }
 
+export const updatePostInit = () =>{
+    return{
+        type: actionTypes.UPDATE_POST_INIT
+    }
+}
 
 export const updatePostStart = () =>{
     return{
@@ -124,9 +134,10 @@ export const updatePostStart = () =>{
     }
 }
 
-export const updatePostSuccess = () =>{
+export const updatePostSuccess = (postData) =>{
     return{
-        type: actionTypes.UPDATE_POST_SUCCESS
+        type: actionTypes.UPDATE_POST_SUCCESS,
+        postData: postData
     }
 }
 
@@ -143,7 +154,7 @@ export const updatePost = (pId, postData) =>{
         dispatch( updatePostStart() );
         axios.put(`/diaryPosts/${pId}.json`, postData)
             .then(response =>{
-                dispatch( updatePostSuccess() );
+                dispatch( updatePostSuccess(postData) );
             })
             .catch(err =>{
                 dispatch( updatePostFailed(err) );

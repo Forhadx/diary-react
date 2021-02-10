@@ -13,7 +13,6 @@ textarea{
     padding: 1rem ;
     font-size: 1.2rem;
     border: none;
-
     border-left: .3rem solid pink;
     border-right: .3rem solid pink;
     margin-bottom: 2rem;
@@ -26,7 +25,12 @@ textarea:focus{
 .addpost-btn{
     width: 5rem;
     height: 2rem;
-    background-color: rgb(240, 132, 150);
+    background-color: rgb(247, 104, 128);
     border: none;
     color: white;
+    border-radius: .5rem;
+}
+.addpost-btn:hover,
+.addpost-btn:active{
+    background-color: rgb(250, 146, 164);
 }

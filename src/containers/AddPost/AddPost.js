@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 import * as actions from "../../store/actions/index";
 
@@ -8,6 +10,13 @@ import "./AddPost.css";
 const AddPost = (props) => {
   const [post, setPost] = useState("");
 
+  const {onAddPostInit} = props;
+  let redirect = null;
+
+  useEffect(()=>{
+    onAddPostInit();
+  }, [onAddPostInit])
+
   const addPostFormHandler = (event) => {
     event.preventDefault();
 
@@ -15,24 +24,38 @@ const AddPost = (props) => {
         post: post,
         time: new Date().toLocaleString()
     }
-    console.log(postDetails)
     props.onAddPost(postDetails)
     setPost('');
   };
 
+  if(!props.isPostAdd){
+    //props.history.push('/')
+    console.log('redirect?');
+    {
+
+      redirect = <Redirect to="/" />
+    }
+  }
+  console.log('addpost-: ',props.allPosts);
+
   return (
     <div className="add-post">
+      { redirect }
       <h2>Write Your opinion..</h2>
       <form onSubmit={addPostFormHandler}>
+      { props.addLoading ? <Spinner /> :
         <textarea
           type="text"
           onChange={(e) => setPost(e.target.value)}
           value={post}
           placeholder="write from here..."
         />
+      }
+        
         <button type="submit" className="addpost-btn">
           DONE
         </button>
+        
       </form>
     </div>
   );
@@ -41,13 +64,15 @@ const AddPost = (props) => {
 const mapStateToProps = (state) => {
   return {
     allPosts: state.allPosts,
-    loading: state.loading,
+    isPostAdd: state.isPostAdd,
+    addLoading: state.addLoading
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddPost: (postData) => dispatch(actions.addPost(postData)),
+    onAddPostInit: () => dispatch(actions.addPostInit())
   };
 };
 

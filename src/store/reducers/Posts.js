@@ -3,29 +3,50 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     allPosts: [],
     error: false,
-    loading: true
+    loading: true,
+
+    isPostAdd: true,
+    addLoading: false,
+
+    upLoading: false,
+    isUpdate: false
+
 };
 
 
 const reducer = (state=initialState, action ) =>{
     switch(action.type){
+        case actionTypes.ADD_POST_INIT:
+            return{
+                ...state,
+                isPostAdd: true,
+                addLoading: false
+            }
         case actionTypes.ADD_POST_START:
             return{
                 ...state,
-                loading: true
+                isPostAdd: true,
+                addLoading: true
             }
         case actionTypes.ADD_POST_SUCCESS:
+            const newPost = {
+                ...action.postData, 
+                id: action.postId
+            }
             return{
                 ...state,
-                loading: false,
-                allPosts: state.allPosts.concat(action.postData, {id: action.postId})
+                isPostAdd: false,
+                addLoading: false,
+                allPosts: state.allPosts.concat( newPost )
             }
         case actionTypes.ADD_POST_FAILED:
             return{
                 ...state,
                 error: action.error,
-                loading: false
+                isPostAdd: false,
+                addLoading: false
             }
+
         case actionTypes.FETCH_POST_START:
             return{
                 ...state,
@@ -61,21 +82,31 @@ const reducer = (state=initialState, action ) =>{
                 error: action.error,
                 loading: false
             }
+        case actionTypes.UPDATE_POST_INIT:
+                return{
+                    ...state,
+                    upLoading: false,
+                    isUpdate: false
+                }
         case actionTypes.UPDATE_POST_START:
             return{
                 ...state,
-                loading: true
+                upLoading: true,
+                isUpdate: false
             }
         case actionTypes.UPDATE_POST_SUCCESS:
             return{
                 ...state,
-                loading: false,
+                allpost: action.postData,
+                upLoading: false,
+                isUpdate: true
             }
         case actionTypes.UPDATE_POST_FAILED:
             return{
                 ...state,
                 error: action.error,
-                loading: false
+                upLoading: false,
+                isUpdate: false
             }
         default:
             return state;

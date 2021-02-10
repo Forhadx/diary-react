@@ -40,20 +40,16 @@ const AllPosts = (props) => {
     setShow(false);
   };
 
-  const modalClosedHandler = () => {
-    setShow(false);
-  };
-
   const postUpdateHandler = (post) => {
-    setShow(true);
+    //setShow(true);
     setUpPost(post);
   };
 
-  const closeUpdateHandler = () =>{
-    setShow(false);
+  const closeUpdateHandler = () => {
+    //setShow(false);
     setUpPost(null);
-  }
-  
+    updateModal = null;
+  };
 
   if (delId) {
     deleteModal = (
@@ -66,39 +62,47 @@ const AllPosts = (props) => {
 
   if (upPost) {
     updateModal = (
-      <UpdatePost
-        upPost={upPost}
-        updatePostFormHandler={props.onUpdatePost}
-        closeUpdate={closeUpdateHandler}
-      />
+      <UpdatePost upPost={upPost} closeUpdate={closeUpdateHandler} />
     );
   }
+  const modalClosedHandler = () => {
+    setShow(false);
+    setDelId(null);
+    
+  };
+
+  const updateModalClosedHandler = () =>{
+    setUpPost(null);
+    updateModal = null;
+  }
+
+  console.log("allpost- ", props.allPosts);
 
   return (
     <div className="posts">
       <Modal show={show} modalClosed={modalClosedHandler}>
         {deleteModal}
+      </Modal>
+      <Modal show={upPost} modalClosed={updateModalClosedHandler}>
         {updateModal}
       </Modal>
       <h2>Your all writtings</h2>
-      {props.allPosts.map((p) => {
-        return (
-          <div className="details" key={p.id}>
-            <div className="post-header">
-              <div>{p.time}</div>
-              <div className="post-option">
-                <div onClick={() => postUpdateHandler(p)}>EDIT</div>
-                <div onClick={() => postDeleteHandler(p.id)}>DELETE</div>
-              </div>
+      {props.allPosts.map((p) => (
+        <div key={p.id} className="details">
+          <div className="post-header">
+            <div>{p.time}</div>
+            <div className="post-option">
+              <div onClick={() => postUpdateHandler(p)}>EDIT</div>
+              <div onClick={() => postDeleteHandler(p.id)}>DELETE</div>
             </div>
-            {props.loading ? (
-              <Spinner />
-            ) : (
-              <div className="description">{p.post}</div>
-            )}
           </div>
-        );
-      })}
+          {props.loading ? (
+            <Spinner />
+          ) : (
+            <div className="description">{p.post}</div>
+          )}
+        </div>
+      ))}
     </div>
   );
 };
@@ -106,7 +110,7 @@ const AllPosts = (props) => {
 const mapStateToProps = (state) => {
   return {
     allPosts: state.allPosts,
-    loading: state.loading,
+    loading: state.loading
   };
 };
 

@@ -1,0 +1,52 @@
+
+.delete-post{
+    box-sizing: border-box;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delete-post p{
+    text-align: center;
+    color: rgb(54, 51, 51);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+.delete-post .yes{
+    width: 5rem;
+    background-color:rgb(46, 199, 46);
+    color: white;
+    padding: .3rem 0;
+    box-sizing: border-box;
+    border-radius: .3rem;
+    margin: 0 1rem ;
+}
+.delete-post .yes:focus{
+    outline: none;
+}
+.delete-post .yes:hover,
+.delete-post .yes:active{
+    color: green;
+    background-color: white;
+}
+
+.delete-post .no{
+    width: 5rem;
+    background-color: rgb(247, 83, 83);
+    color: white;
+    padding: .3rem 0;
+    box-sizing: border-box;
+    border-radius: .3rem;
+    margin: 0 1rem ;
+}
+.delete-post .no:focus{
+    outline: none;
+}
+.delete-post .no:hover,
+.delete-post .no:active{
+    color: red;
+    background-color: white;
+}

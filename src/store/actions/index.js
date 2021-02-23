@@ -1,4 +1,3 @@
-import { addPostFailed, addPostStart, addPostSuccess } from "./Posts";
 
 export { 
     addPostInit,
@@ -6,5 +5,12 @@ export {
     fetchPost,
     deletePost,
     updatePostInit,
-    updatePost
+    updatePost,
+    addLove
 } from "./Posts.js";
+
+export {
+    auth, 
+    logout, 
+    authCheckState
+} from './auth';

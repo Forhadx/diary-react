@@ -3,14 +3,16 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     allPosts: [],
     error: false,
-    loading: true,
+    loading: false,
 
-    isPostAdd: true,
     addLoading: false,
+    isAdd: false,
 
     upLoading: false,
-    isUpdate: false
+    isUpdate: false,
 
+    delLoading: false,
+    fetchLoading: true
 };
 
 
@@ -19,14 +21,14 @@ const reducer = (state=initialState, action ) =>{
         case actionTypes.ADD_POST_INIT:
             return{
                 ...state,
-                isPostAdd: true,
-                addLoading: false
+                addLoading: false,
+                isAdd: false
             }
         case actionTypes.ADD_POST_START:
             return{
                 ...state,
-                isPostAdd: true,
-                addLoading: true
+                addLoading: true,
+                isAdd: false
             }
         case actionTypes.ADD_POST_SUCCESS:
             const newPost = {
@@ -35,8 +37,8 @@ const reducer = (state=initialState, action ) =>{
             }
             return{
                 ...state,
-                isPostAdd: false,
                 addLoading: false,
+                isAdd: true,
                 allPosts: state.allPosts.concat( newPost )
             }
         case actionTypes.ADD_POST_FAILED:
@@ -44,43 +46,44 @@ const reducer = (state=initialState, action ) =>{
                 ...state,
                 error: action.error,
                 isPostAdd: false,
-                addLoading: false
+                addLoading: false,
+                isAdd: false
             }
 
         case actionTypes.FETCH_POST_START:
             return{
                 ...state,
-                loading: true
+                fetchLoading: true
             }
         case actionTypes.FETCH_POST_SUCCESS:
             return{
                 ...state,
-                loading: false,
+                fetchLoading: false,
                 allPosts: action.postData
             }
         case actionTypes.FETCH_POST_FAILED:
             return{
                 ...state,
                 error: action.error,
-                loading: false
+                fetchLoading: false
             }
         case actionTypes.DELETE_POST_START:
             return{
                 ...state,
-                loading: true
+                delLoading: true
             }
         case actionTypes.DELETE_POST_SUCCESS:
             let posts = state.allPosts.filter(p => p.id !== action.pId);
             return{
                 ...state,
                 allPosts: posts,
-                loading: false
+                delLoading: false
             }
         case actionTypes.DELETE_POST_FAILED:
             return{
                 ...state,
                 error: action.error,
-                loading: false
+                delLoading: false
             }
         case actionTypes.UPDATE_POST_INIT:
                 return{
@@ -107,6 +110,11 @@ const reducer = (state=initialState, action ) =>{
                 error: action.error,
                 upLoading: false,
                 isUpdate: false
+            }
+        case actionTypes.ADD_LOVE:
+            return{
+                ...state,
+                allpost: action.postData
             }
         default:
             return state;

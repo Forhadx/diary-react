@@ -1,7 +1,6 @@
 
 .update-post{
     box-sizing: border-box;
-    background-color: rgb(255, 125, 147);
     
 }
 .update-post .closeBtn{
@@ -16,8 +15,9 @@
     width: 1.3rem;
     height: 1.3rem;  
     background-color: white;
-    color: black;  
+    color: #fc0f46;
 }
+
 .update-post form{
     display: flex;
     flex-direction: column;
@@ -26,10 +26,11 @@
 
 .update-post label{
     text-align: center;
-    color: white;
-    font-size: 1.2rem;
+    color: #fc0f46;  
     font-weight: bold;
+    font-size: 1.2rem;
     padding: .3rem 0;
+    margin-bottom: .3rem;
 }
 
 .update-post textarea{
@@ -40,15 +41,16 @@
     font-size: 1.2rem;
     border: none;
     box-sizing: border-box;
-    border-radius: .3rem;
-    margin-bottom: .5rem;
+    margin-bottom: 1rem;
+    border-radius: 0;
+    box-shadow: .1rem .1rem .2rem .2rem rgb(209, 204, 204);
 }
 .update-post textarea:focus{
     outline: none;
 }
 
 .update-post button{
-    background-color:green;
+    background-color:rgb(103, 194, 51);
     color: white;
     padding: .3rem 0;
     font-weight: bold;

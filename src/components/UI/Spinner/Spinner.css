@@ -4,8 +4,8 @@
   background: #9292c8;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
-  width: 1em;
-  height: 4em;
+  width: .5em;
+  height: 1em;
 }
 .loader {
   color: #9292c8;
@@ -38,11 +38,11 @@
   80%,
   100% {
     box-shadow: 0 0;
-    height: 4em;
+    height: 1.5em;
   }
   40% {
-    box-shadow: 0 -2em;
-    height: 5em;
+    box-shadow: 0 -.5em;
+    height: 2em;
   }
 }
 @keyframes load1 {
@@ -50,10 +50,10 @@
   80%,
   100% {
     box-shadow: 0 0;
-    height: 4em;
+    height: 1.5em;
   }
   40% {
-    box-shadow: 0 -2em;
-    height: 5em;
+    box-shadow: 0 -.5em;
+    height: 2em;
   }
 }

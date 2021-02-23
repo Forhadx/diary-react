@@ -6,17 +6,15 @@ import * as actions from "../../store/actions/index";
 import Spinner from "../UI/Spinner/Spinner";
 import './UpdatePost.css';
 
-const UpdatePost = (props) => {
-  let x = props.upPost.post;
-  const [post, setPost] = useState(x);
+const UpdatePost = React.memo(props => {
+
+  const [post, setPost] = useState(props.upPost.post);
 
   const { onUpdatePostInit, isUpdate, closeUpdate } = props;
 
   useEffect(() => {
-    console.log('up useeffect?? ');
     onUpdatePostInit();
     if (isUpdate) {
-      console.log('isupdate: ', isUpdate);
       closeUpdate();
     }
   }, [onUpdatePostInit, isUpdate, closeUpdate]);
@@ -27,9 +25,11 @@ const UpdatePost = (props) => {
     const postDetails = {
       post: post,
       time: props.upPost.time,
+      love: props.upPost.love,
+      userId: props.upPost.userId
     };
 
-    props.onUpdatePost(props.upPost.id, postDetails);
+    props.onUpdatePost(props.upPost.id, postDetails, props.token);
   };
 
   const closeUpdateModal = () =>{
@@ -58,19 +58,21 @@ const UpdatePost = (props) => {
       </form>
     </div>
   );
-};
+});
 
 const mapStateToProps = (state) => {
   return {
-    upLoading: state.upLoading,
-    isUpdate: state.isUpdate,
-    upModal: state.upModal
+    upLoading: state.post.upLoading,
+    isUpdate: state.post.isUpdate,
+    upModal: state.post.upModal,
+    token : state.auth.token,
+    userId: state.auth.userId
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdatePost: (id, postData) => dispatch(actions.updatePost(id, postData)),
+    onUpdatePost: (id, postData, token) => dispatch(actions.updatePost(id, postData, token)),
     onUpdatePostInit: () => dispatch(actions.updatePostInit()),
   };
 };

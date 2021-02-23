@@ -17,7 +17,7 @@
 
 .delete-post .yes{
     width: 5rem;
-    background-color:rgb(46, 199, 46);
+    background-color:rgb(103, 194, 51);
     color: white;
     padding: .3rem 0;
     box-sizing: border-box;
@@ -29,13 +29,13 @@
 }
 .delete-post .yes:hover,
 .delete-post .yes:active{
-    color: green;
+    color: rgb(89, 218, 30);
     background-color: white;
 }
 
 .delete-post .no{
     width: 5rem;
-    background-color: rgb(247, 83, 83);
+    background-color: rgb(250, 108, 151);
     color: white;
     padding: .3rem 0;
     box-sizing: border-box;

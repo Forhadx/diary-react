@@ -9,14 +9,18 @@ import thunk from "redux-thunk";
 import "./index.css";
 import App from "./App";
 
-import reducer from "./store/reducers/Posts";
+import postReducer from "./store/reducers/Posts";
+import authReducer from './store/reducers/auth';
+
+const rootReducer = combineReducers({
+  auth: authReducer,
+  post: postReducer
+})
 
 const logger = (store) => {
   return (next) => {
     return (action) => {
-      // console.log('[middlerware] dispatching', action );
       const result = next(action);
-      //console.log('[middleware] next to state', store.getState());
       return result;
     };
   };
@@ -25,7 +29,7 @@ const logger = (store) => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  reducer,
+  rootReducer,
   composeEnhancers(applyMiddleware(logger, thunk))
 );
 

@@ -2,20 +2,29 @@
     width: 100%;
 }
 
+.add-post h2{
+    padding-left: 5%;
+}
+
 .add-post form{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 textarea{
-    width: 100%;
-    height: 20rem;
+    width: 90%;
+    height: 40vh;
     resize: none;
     padding: 1rem ;
     font-size: 1.2rem;
     border: none;
-    border-left: .3rem solid pink;
-    border-right: .3rem solid pink;
-    margin-bottom: 2rem;
+    border: .2rem solid pink;
+    box-shadow: .1rem .1rem .2rem .2rem rgb(209, 204, 204);
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    border-radius: .8rem;
 }
 
 textarea:focus{
@@ -23,14 +32,32 @@ textarea:focus{
 }
 
 .addpost-btn{
-    width: 5rem;
+    margin-top: 1rem;
+    width: 10rem;
     height: 2rem;
     background-color: rgb(247, 104, 128);
-    border: none;
+    border: 1px solid rgb(247, 104, 128);
     color: white;
     border-radius: .5rem;
 }
+
+.addpost-btn:focus{
+    outline: none;
+}
+
 .addpost-btn:hover,
 .addpost-btn:active{
-    background-color: rgb(250, 146, 164);
+    background-color: rgb(180, 7, 36);
 }
+
+.addpost-btn:disabled{
+    cursor: not-allowed;
+    background-color: rgb(248, 193, 202);
+}
+
+.message{
+    text-align: center;
+    margin: 1rem 0;
+    color: rgb(221, 28, 28);
+}
+

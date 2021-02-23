@@ -1,9 +1,32 @@
-header{
-    height: 5rem;
-    width: 100%;
-    background-color: yellowgreen;
+body {
+    margin: 0;
+  }
+  
+header {
+  position: fixed;
+  top: 0;
+  height: 3.5rem;
+  width: 100%;
+  background-color: #FF416C;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.main {
+  margin: auto;
+  margin-top: 3.5rem;
+  padding: 2rem 0 0 0;
+  width: 90%;
+}
+
+@media (min-width: 40rem) {
+  .main {
+    width: 40rem;
+  }
+}
+/*
 nav{
     margin: auto;
     width: 60%;
@@ -50,8 +73,5 @@ header a:hover{
     border-bottom: .2rem solid rgb(64, 61, 238);
 }
 
-.main{
-    margin: auto;
-    padding: 2rem 0 0 0;
-    width: 60%;
-}
+
+*/

@@ -27,16 +27,17 @@ export const addPostFailed = (err) =>{
     }
 }
 
-export const addPost = (postData) => {
+export const addPost = (postData, token) => {
+   // console.log('token: ', token)
     return dispatch =>{
         dispatch( addPostStart() );
-        axios.post('/diaryPosts.json', postData)
+        axios.post('/diaryPosts.json?auth=' + token, postData)
             .then(response =>{
                // console.log('add success!!')
                 dispatch( addPostSuccess(response.data.name, postData) );
             })
             .catch(err =>{
-                console.log('add error! ', err);
+               // console.log('add error! ', err);
                 dispatch( addPostFailed(err) );
             })
     }
@@ -65,10 +66,11 @@ export const fetchPostFailed = (err) =>{
     }
 }
 
-export const fetchPost = () =>{
+export const fetchPost = (token, userId) =>{
+    const queryParams = "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
     return dispatch =>{
         dispatch( fetchPostStart() );
-        axios.get('/diaryPosts.json')
+        axios.get('/diaryPosts.json' + queryParams)
             .then(response =>{
                 const fetchPosts = [];
                 for(let key in response.data){
@@ -109,10 +111,10 @@ export const deletePostFailed = (err) =>{
     }
 }
 
-export const deletePost = (pId) =>{
+export const deletePost = (pId, token) =>{
     return dispatch =>{
         dispatch( deletePostStart() );
-        axios.delete(`/diaryPosts/${pId}.json`)
+        axios.delete(`/diaryPosts/${pId}.json?auth=${token}`)
             .then(response =>{
                 dispatch( deletePostSuccess(pId) );
             })
@@ -149,15 +151,36 @@ export const updatePostFailed = (err) =>{
     }
 }
 
-export const updatePost = (pId, postData) =>{
+export const updatePost = (pId, postData, token) =>{
     return dispatch =>{
         dispatch( updatePostStart() );
-        axios.put(`/diaryPosts/${pId}.json`, postData)
+        axios.put(`/diaryPosts/${pId}.json?auth=${token}`, postData)
             .then(response =>{
                 dispatch( updatePostSuccess(postData) );
             })
             .catch(err =>{
                 dispatch( updatePostFailed(err) );
+            })
+    }
+}
+
+
+export const addLoveSuccess = (postData) =>{
+    return{
+        type: actionTypes.ADD_LOVE,
+        postData: postData
+    }
+}
+
+
+export const addLove = (pId, postData, token) =>{
+    return dispatch =>{
+        axios.put(`/diaryPosts/${pId}.json?auth=${token}`, postData)
+            .then(response =>{
+                dispatch( updatePostSuccess(postData) );
+            })
+            .catch(err =>{
+                console.log('error in love: ', err);
             })
     }
 }

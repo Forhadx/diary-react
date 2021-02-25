@@ -48,7 +48,7 @@ const AddPost = React.memo(props => {
             value={post}
             placeholder="write from here..."
           />
-          <button type="submit" className="addpost-btn" disabled={!post}>
+          <button type="submit" className="addpost-btn" disabled={post.trim().length === 0}>
             DONE
           </button>
         </form>

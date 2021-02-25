@@ -58,7 +58,7 @@ const Favourite = React.memo(props => {
                 <div>{p.time}</div>
               </div>
               <div className="description" onClick={() => fullPostHandler(p)}>
-                {p.post.slice(0, 50)}...
+                {p.post.slice(0, 50)}{ p.post.length > 50 ? ' .....' : null}
               </div>
             </div>
           ) : null}

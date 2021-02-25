@@ -50,6 +50,7 @@
 .fa-heart{
   cursor: pointer;
 }
+
 .post-option i:hover,
 .post-option i:active {
   color: rgb(122, 223, 137);

@@ -1,7 +1,7 @@
 # diary-react
 
 # Live demo
-https://diary-app-fx.netlify.app/login
+https://diary-app-fx.netlify.app/
 
 
 In the Diary App user first, log in by email. Then they can write there. All of the writings see on the home page. User can make a favourite list of posts. Posts can be deleted and updated by the user. At last user can logout by there account.
